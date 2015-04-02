@@ -14,8 +14,11 @@ class Document:
         return len(self.arrWords)
 
     def removePunctuation(self, text):
-        exclude = set(string.punctuation)
-        return ''.join(ch for ch in text if ch not in exclude)
+        for c in string.punctuation:
+            text = text.replace(c," ")
+        return text
+        #exclude = set(string.punctuation)
+        #return ''.join(ch for ch in text if ch not in exclude)
 
     def termFrequency(self, word):
         return self.arrWords.count(word)
