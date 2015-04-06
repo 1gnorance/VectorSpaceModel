@@ -1,6 +1,7 @@
 __author__ = 'aferraz'
 
 from scipy import sparse
+import operator
 
 class VectorSpaceModel:
     docsVector = []
@@ -36,12 +37,18 @@ class VectorSpaceModel:
     def rankDocs(self, query):
         queryVector = self.createVector(query)
 
-        for docVector in self.docsVector:
+        for i, docVector in enumerate(self.docsVector):
             similaridade = docVector.dot(queryVector.transpose())[0, 0]
-            self.similarity.append(similaridade)
+            self.similarity.append((self.bagOfDocuments.arrDocuments[i], similaridade))
 
-    def printRank(self):
+    def getRank(self):
+        return sorted(self.similarity,key=lambda x: x[1], reverse=True)
+
+    def printRank(self, limit=10):
         i = 0
-        for docVector in self.docsVector:
-            print "Doc[" + str(i) + "] = " + str(self.similarity[i])
+        ordered = sorted(self.similarity,key=lambda x: x[1], reverse=True)
+        for o in ordered:
+            if i == limit:
+                break
+            print "Doc[" + str(i) + "] = " + str(ordered[i])
             i += 1
