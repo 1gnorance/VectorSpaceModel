@@ -26,11 +26,13 @@ class VectorSpaceModel:
         self.docsVector.append(sparseDocArr)
 
     def createVector(self, doc):
+        k = 25
         sparseDocArr = sparse.lil_matrix((1, self.bagOfWords.len()))
 
         words = doc.arrWords
         for word in words:
             sparseDocArr[0, self.bagOfWords.getPositionOfWord(word)] = doc.termFrequency(word)*self.bagOfDocuments.inverseDocumentFrequency(word)
+            sparseDocArr[0, self.bagOfWords.getPositionOfWord(word)] = ((k+1)*doc.termFrequency(word)/(doc.termFrequency(word)+k))*self.bagOfDocuments.inverseDocumentFrequency(word)
 
         return sparseDocArr
 
