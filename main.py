@@ -20,7 +20,7 @@ docs = docsDilma + docsLula + docsCarro + docsBicicleta +  docsTransporte + docs
 
 bod = BagOfDocuments()
 for doc in docs:
-    bod.addDoc(Document(unicodedata.normalize('NFKD', doc.lower()).encode('ascii','ignore')))
+    bod.addDoc(Document(unicodedata.normalize('NFKD', doc.lower()).encode('ascii', 'ignore')))
 
 '''bod = BagOfDocuments()
 bod.addDoc(Document("Site oficial da campanha de Dilma Rousseff a reeleicao presidencial. Dilma presidente".lower()))
@@ -36,7 +36,11 @@ bod.numberOfDocumentsThatContains("aecio")'''
 
 bof = BagOfWords(bod)
 vsm = VectorSpaceModel(bof, bod)
+<<<<<<< Updated upstream
 query = Document("aecio neves")
+=======
+query = Document("carro condutor saude")
+>>>>>>> Stashed changes
 vsm.rankDocs(query)
 orderedDocuments = vsm.getRank()
 vsm.printRank()

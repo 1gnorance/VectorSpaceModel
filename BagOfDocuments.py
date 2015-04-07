@@ -15,7 +15,6 @@ class BagOfDocuments:
     def inverseDocumentFrequency(self, word):
         return math.log10(self.numOfDocuments()/(self.numberOfDocumentsThatContains(word)+1))
 
-
     def numberOfDocumentsThatContains(self, word):
         result = [i for i, doc in enumerate(self.arrDocuments) if doc.termFrequency(word) > 0]
         return len(result)
