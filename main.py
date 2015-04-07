@@ -1,7 +1,6 @@
 #coding:utf-8
 __author__ = 'aferraz'
 
-import string
 import unicodedata
 from BagOfDocuments import BagOfDocuments
 from BagOfWords import BagOfWords
@@ -37,7 +36,7 @@ bod.numberOfDocumentsThatContains("aecio")'''
 
 bof = BagOfWords(bod)
 vsm = VectorSpaceModel(bof, bod)
-query = Document("carro condutor")
+query = Document("aecio neves")
 vsm.rankDocs(query)
 orderedDocuments = vsm.getRank()
 vsm.printRank()
